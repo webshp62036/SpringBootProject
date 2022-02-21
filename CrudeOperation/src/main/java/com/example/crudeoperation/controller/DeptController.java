@@ -40,7 +40,7 @@ public class DeptController {
     public String deleteDeptInfo(@PathVariable("id") Integer deptId){
 
         serviceObj.deleteDeptInfo(deptId);
-        return "Deleted data Successfully !!!";
+        return "Deleted data Successfully !!! of Id ="+deptId;
     }
 
 }
