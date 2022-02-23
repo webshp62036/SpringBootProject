@@ -1,25 +1,26 @@
 package com.example.manytomanyrelation.teacher;
 
-import javax.persistence.*;
-import java.util.List;
+import com.example.manytomanyrelation.department.DepartmentEntity;
 
+import javax.persistence.*;
+@javax.persistence.Entity
 public class Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int Id;
+    private int teacherId;
+    @Column(name = "teacher_name")
     private String Name;
     private float Fee;
     private String City;
-    @OneToOne
-    @JoinTable(name = "TeacherEnrollment",
-            joinColumns = @JoinColumn(name ="Name"),
-            inverseJoinColumns = @JoinColumn(name = "departmentName")
-
+    @ManyToOne(fetch = FetchType.EAGER,cascade =CascadeType.PERSIST)
+    @JoinTable(name = "Department_Teacher",
+              joinColumns = @JoinColumn(name ="teacher_id"),
+              inverseJoinColumns = @JoinColumn(name = "department_id")
     )
-    private Entity teacher;
+    private DepartmentEntity department;
 
     public Entity(int id, String name, float fee, String city) {
-        Id = id;
+        teacherId = id;
         Name = name;
         Fee = fee;
         City = city;
@@ -28,11 +29,11 @@ public class Entity {
         super();
     }
     public int getId() {
-        return Id;
+        return teacherId;
     }
 
     public void setId(int id) {
-        Id = id;
+        teacherId = id;
     }
 
     public String getName() {
