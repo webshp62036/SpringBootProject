@@ -3,6 +3,7 @@ package com.example.manytomanyrelation.Students;
 import com.example.manytomanyrelation.subjects.SubEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,7 +23,7 @@ public class StdEntity {
               joinColumns =@JoinColumn( name ="Subject_Id"),
               inverseJoinColumns=@JoinColumn( name ="Student_Id")
     )
-    private List<SubEntity> enrollement;
+    private List<SubEntity> enrollement=new ArrayList<>();
 
 
 

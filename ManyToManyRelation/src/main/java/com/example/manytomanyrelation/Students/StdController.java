@@ -36,15 +36,15 @@ public class StdController {
         return stdObject.saveData(student);
     }
 
-    //PutMapping
-//    @PutMapping("/{Student_Id}/student/{Subject_Id}")
-//    public SubEntity updateData(@RequestBody @PathVariable int Student_Id, @PathVariable int Subject_Id){
-//       // return stdObject.updateData(student,Id);
-//        StdEntity student =stdRepo.getOne(Student_Id);
-//        SubEntity subject =subRepo.getOne(Subject_Id);
-//        subject.enrollement(student);
-//        return subRepo.save(subject);
-//    }
+
+    @PutMapping("/{Student_Id}/student/{Subject_Id}")
+    public SubEntity updateData(@RequestBody @PathVariable int Student_Id, @PathVariable int Subject_Id){
+       // return stdObject.updateData(student,Id);
+        StdEntity student =stdRepo.getOne(Student_Id);
+        SubEntity subject =subRepo.getOne(Subject_Id);
+        subject.enrollement(student);
+        return subRepo.save(subject);
+    }
 
 
 }

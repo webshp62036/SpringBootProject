@@ -15,7 +15,7 @@ public class SubEntity {
     private String SubjectTimeDuration;
 
      //Here we are trying to mapped the tables
-    @ManyToMany(mappedBy ="Subject")
+    @ManyToMany(mappedBy ="enrollement")
     private final Set<StdEntity> studentData = new HashSet<>();
 
     public SubEntity(int id, String subjectName, String subjectTimeDuration) {

@@ -1,13 +1,20 @@
 package com.example.manytomanyrelation.department;
 
-import javax.persistence.OneToOne;
-
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+@Entity
 public class DepartmentEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int departmentId;
+    @Column(name ="department_name")
     private String departmentName;
     private String departmentGrade;
-    @OneToOne(mappedBy = "Name")
-    private DepartmentEntity Data;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "department")
+    private ArrayList<Entity> teacher = new ArrayList<>();
+
+
 
     public DepartmentEntity(int departmentId, String departmentName, String departmentGrade) {
         this.departmentId = departmentId;
