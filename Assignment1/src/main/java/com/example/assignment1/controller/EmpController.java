@@ -1,5 +1,6 @@
 package com.example.assignment1.controller;
 
+import com.example.assignment1.dto.EmployeeDto;
 import com.example.assignment1.entity.Employee;
 import com.example.assignment1.service.EmployeeService;
 import org.springframework.stereotype.Controller;
@@ -19,21 +20,21 @@ public class EmpController {
 
 
     // postMapping
-    @PostMapping("saveEmpData")
-    public String save(@RequestBody Employee empolyee){
-        return employeeService.saveEmpData(empolyee);
+    @PostMapping("save/employee/data")
+    public String save(@RequestBody EmployeeDto employeeDto){
+        return employeeService.saveEmpData(employeeDto);
 
     }
-    @GetMapping("getEmpData")
+    @GetMapping("get/employee/data")
     public List<Employee> getData(){
         return employeeService.getEmpData();
     }
-    @PutMapping("updateEmpData")
-    public String updateData(@RequestBody Employee empolyee, @PathVariable int empId){
-        return employeeService.updateEmpData(empolyee,empId);
+    @PutMapping("update/employee/data/{empId}")
+    public String updateData(@RequestBody EmployeeDto employeeDto, @PathVariable int empId){
+        return employeeService.updateEmpData(employeeDto,empId);
     }
 
-    @DeleteMapping("deleteEmpData")
+    @DeleteMapping("delete/employee/data/{empId}")
     public String  deleteData(@PathVariable int empId){
         return employeeService.deleteEmpData(empId);
     }

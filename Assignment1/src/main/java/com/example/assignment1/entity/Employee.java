@@ -1,13 +1,9 @@
 package com.example.assignment1.entity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.List;
-
 @Entity
 @Table(name = "employee")
 public class Employee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id")
@@ -18,35 +14,28 @@ public class Employee {
     private String empEmail;
     @Column(name = "emp_salary")
     private float empSalary;
-
-
-
-    /*****************************************************/
+    /**************One to many relationship***************************************/
     @OneToMany(targetEntity =PhoneNo.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "emp_id")
-    private List<PhoneNo> phoneNo;
+    private List<PhoneNo> phoneNo; // Phone no list
     public List<PhoneNo> getPhoneNo() {
         return phoneNo;
-    }
-
+    }// getter for phoneNo list
     public void setPhoneNo(List<PhoneNo> phoneNo) {
         this.phoneNo = phoneNo;
-    }
-    /*******************************************************/
-
-
+    }// setter for phoneNo list
+    /*****************one to many relationship**************************************/
+    // constructor with argument
     public Employee(int empId, String empName, String empEmail, float empSalary) {
         this.empId = empId;
         this.empName = empName;
         this.empEmail = empEmail;
         this.empSalary = empSalary;
-
     }
-
+    // constructor with no argument
     public Employee() {
-
     }
-
+    // Getter and Setter for all above declared fields
     public int getEmpId() {
         return empId;
     }
@@ -78,6 +67,4 @@ public class Employee {
     public void setEmpSalary(float empSalary) {
         this.empSalary = empSalary;
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.example.assignment1.controller;
 
+import com.example.assignment1.dto.PhoneDto;
 import com.example.assignment1.entity.PhoneNo;
 import com.example.assignment1.service.PhoneNoService;
 import org.springframework.stereotype.Controller;
@@ -16,21 +17,21 @@ public class PhController {
     }
 
     // postMapping
-    @PostMapping("savePhoData")
-    public String save(@RequestBody PhoneNo phoneNo){
-        return phoneNoService.savePhoData(phoneNo);
+    @PostMapping("save/phone/data")
+    public String save(@RequestBody PhoneDto phoneDto){
+        return phoneNoService.savePhoData(phoneDto);
 
     }
-    @GetMapping("getPhoData")
+    @GetMapping("get/phone/data")
     public List<PhoneNo> getData(){
         return phoneNoService.getPhoData();
     }
-    @PutMapping("updatePhoData")
-    public String updateData(@RequestBody PhoneNo phoneNo, @PathVariable int pId){
-        return phoneNoService.updatePhoData(phoneNo,pId);
+    @PutMapping("update/phone/data/{pId}")
+    public String updateData(@RequestBody PhoneDto phoneDto, @PathVariable int pId){
+        return phoneNoService.updatePhoData(phoneDto,pId);
     }
 
-    @DeleteMapping("deletePhoData")
+    @DeleteMapping("delete/phone/data/{pId}")
     public String  deleteData(@PathVariable int pId){
         return phoneNoService.deletePhoData(pId);
     }
