@@ -16,7 +16,7 @@ public class PhoneNoService {
 
     // Method for saving data into repository or database;
     public String savePhoData(PhoneDto phoneDto){
-       if(phoneDto !=null) {
+       if(phoneDto.getPhoneNO() !=null && phoneDto.getZipCode() !=null) {
            PhoneNo phoneData = new PhoneNo();
            phoneData.setPhoneNo(phoneDto.getPhoneNo());
            phoneData.setZipCode(phoneDto.getZipCode());
