@@ -16,7 +16,7 @@ public class EmployeeService {
     // save a particular class data
     public String saveEmpData(EmployeeDto employeeDto){
         message=null;
-        if(employeeDto !=null) {
+        if(employeeDto.getEmpName() !=null && employeeDto.getEmpEmail() !=null && employeeDto.getEmpSalary() >0  )  {
             Employee obj = new Employee();
             obj.setEmpName(employeeDto.getEmpName());
             obj.setEmpEmail(employeeDto.getEmpEmail());
