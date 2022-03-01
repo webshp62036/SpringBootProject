@@ -1,15 +1,15 @@
 package com.example.onetomany.service;
 
 import com.example.onetomany.entity.StudentEntity;
-import com.example.onetomany.repository.StudentRepository;
+import com.example.onetomany.repository.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class StudentService {
-    private final StudentRepository studentRepository;
+    private final Repository studentRepository;
 
-    public StudentService(StudentRepository studentRepository) {
+    public StudentService(Repository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
