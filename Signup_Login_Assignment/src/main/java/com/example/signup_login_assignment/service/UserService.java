@@ -9,13 +9,14 @@ import java.util.regex.Pattern;
 
 @Service
 public class UserService {
+    String message = null;
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
     public String userRegistration(UserDto userDto) {
-        String message = null;
+
         String phone=null,email=null;
 
         if(userDto.getUser_name() !=null && userDto.getEmail() !=null && userDto.getPhone_no() !=null && userDto.getAge()>0
@@ -49,7 +50,16 @@ public class UserService {
             message="Please Fill Proper Data !!!!!";
         }
       return message;
-    }// method for email validation
+    }
+    //Login Method
+    public String login(String email, String password) {
+        message=null;
+        User user=userRepository.findUser(email,password);
+        if(user !=null){message="Successfully Login !!!!!";}
+        else {message="you have entered wrong email or password !!";}
+        return message;
+    }
+    // method for email validation
     public boolean emailValidation(String email){
           String regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
@@ -61,6 +71,7 @@ public class UserService {
         Pattern ptrn = Pattern.compile("(0/91)?[6-9][0-9]{9}");
         return ptrn.matcher(phone_no).matches();
     }
+
 
 }
 
