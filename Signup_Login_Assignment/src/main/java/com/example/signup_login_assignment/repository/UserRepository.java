@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User,Integer> {
     @Query("SELECT u FROM User u WHERE u.email=:email AND u.user_password=:password" )
-    public User findUser(@Param("email") String email, @Param("password") String user_password);
+    public User findUser(@Param("email") String email,@Param("password") String password);
 
 
 }
