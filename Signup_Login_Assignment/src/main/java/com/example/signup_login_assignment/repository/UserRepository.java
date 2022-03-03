@@ -5,12 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface UserRepository extends JpaRepository<User,Integer> {
-    @Query("SELECT u FROM User u WHERE u.email=:email AND u.user_password=:password" )
-    public User findUser(@Param("email") String email,@Param("password") String password);
+    @Query("SELECT u FROM User u WHERE u.email=:email AND u.userPassword=:password" )
+    public User findUser(@Param("email") String email, @Param("password") String password);
 
 
 }

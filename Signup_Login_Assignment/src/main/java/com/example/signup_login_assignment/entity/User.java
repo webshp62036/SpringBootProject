@@ -1,90 +1,39 @@
 package com.example.signup_login_assignment.entity;
+import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import javax.persistence.*;
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 @Table(name="user")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @NotNull
     private int id;
     @Column(name = "user_name")
-    private String user_name;
+    @NotNull
+    private String userName;
     @Column(name = "email")
+    @NotNull
     private String email;
+    @NotNull
     @Column(name = "user_password")
-    private String user_password;
+    private String userPassword;
     @Column(name = "phone_no")
-    private String phone_no;
+    @NotNull
+    private String phoneNo;
     @Column(name = "age")
+    @NotNull
     private int age;
     @Column(name = "gender")
+    @NotNull
     private String gender;
-    public User() {
-        this.id = id;
-        this.user_name = user_name;
-        this.email = email;
-        this.user_password = user_password;
-        this.phone_no = phone_no;
-        this.age = age;
-        this.gender = gender;
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUser_password() {
-        return user_password;
-    }
-
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
-    }
-
-    public String getPhone_no() {
-        return phone_no;
-    }
-
-    public void setPhone_no(String phone_no) {
-        this.phone_no = phone_no;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-
 
 }
