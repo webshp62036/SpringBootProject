@@ -63,9 +63,7 @@ public class UserService {
     //Login Method
     public String login(String email, String password) {
         message = null;
-        //get all users that are related with given email
-
-         try{
+        try{
              User user =userRepository.findUser(email);
               if(userVerification(user,password,email)) {
                   message="Successfully Login !!!!";
@@ -79,25 +77,30 @@ public class UserService {
          }
          return message;
     }
-    // method for email validation
+    // method for email expression validation
     public boolean emailValidation(String email) {
         String regexPattern ="^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
                 + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
         Pattern pattern = Pattern.compile(regexPattern);
         return pattern.matcher(email).matches();
     }
-    //Method for mobile no varification
+    //Method for mobile no pattern varification
     public boolean phoneValidation(String phone_no) {
         Pattern ptrn = Pattern.compile("(0/91)?[6-9][0-9]{9}");
         return ptrn.matcher(phone_no).matches();
     }
-    // Method for converting password into hashCode
+    // Method for encrypt password
     public String passwordConverter(String password) {
         return b.encode(password);
     }
-    // For validating password & email of user
+    // For validating given password with existing password
     public boolean userVerification(User user,String password,String email){
-        return b.matches(password, user.getUserPassword());
+         boolean result=false;
+        if(email1.equals(user1.getEmail()) && (b.matches(password1,user1.getUserPassword())){
+            result = true;
+        }
+        return result;
+    }
     }
 }
 
