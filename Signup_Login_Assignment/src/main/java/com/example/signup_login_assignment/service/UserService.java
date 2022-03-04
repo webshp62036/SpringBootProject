@@ -8,17 +8,24 @@ import org.springframework.stereotype.Service;
 
 import java.util.regex.Pattern;
 
+
 @Service
 public class UserService {
-    String message = null;
     private final UserRepository userRepository;
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+    String message = null;
+    BCryptPasswordEncoder b = new BCryptPasswordEncoder();
+
     public String userRegistration(UserDto userDto) {
         String phone = null, email = null;
-        if(true) {
-            if (!emailValidation(userDto.getEmail())) {
+        if(userDto !=null) {
+            //
+            if (userRepository.existEmail(userDto.getEmail()) == null) {
+
+                if (!emailValidation(userDto.getEmail())) {
                 email = "Error";
             }
             if (!phoneValidation(userDto.getPhoneNo())) {
@@ -42,8 +49,13 @@ public class UserService {
                 userRepository.save(obj);
                 message = "Data Successfully Saved !!!!";
             }
+        }else
+            {
+                message=userDto.getEmail()+ " alredy exist!! please try with other email";
+            }
 
-        } else {
+        }
+        else {
             message = "Please Fill Proper Data !!!!!";
         }
         return message;
@@ -51,10 +63,11 @@ public class UserService {
     //Login Method
     public String login(String email, String password) {
         message = null;
-        String passwordString = passwordConverter(password);
-        User user =userRepository.findUser(email,passwordString);
+        //get all users that are related with given email
+
          try{
-              if(user!=null) {
+             User user =userRepository.findUser(email);
+              if(userVerification(user,password,email)) {
                   message="Successfully Login !!!!";
               }
               else {
@@ -64,8 +77,7 @@ public class UserService {
          }catch (NullPointerException e){
              message="Exception Or No Records Found";
          }
-
-        return message;
+         return message;
     }
     // method for email validation
     public boolean emailValidation(String email) {
@@ -81,8 +93,11 @@ public class UserService {
     }
     // Method for converting password into hashCode
     public String passwordConverter(String password) {
-        BCryptPasswordEncoder b = new BCryptPasswordEncoder();
         return b.encode(password);
+    }
+    // For validating password & email of user
+    public boolean userVerification(User user,String password,String email){
+        return b.matches(password, user.getUserPassword());
     }
 }
 
