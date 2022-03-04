@@ -94,7 +94,7 @@ public class UserService {
         return b.encode(password);
     }
     // For validating given password with existing password
-    public boolean userVerification(User user,String password,String email){
+    public boolean userVerification(User user1,String password1,String email1){
          boolean result=false;
         if(email1.equals(user1.getEmail()) && (b.matches(password1,user1.getUserPassword())){
             result = true;
